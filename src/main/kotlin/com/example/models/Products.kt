@@ -4,10 +4,10 @@ import kotlinx.serialization.Serializable
 import org.jetbrains.exposed.sql.Table
 
 @Serializable
-data class Product(val id: Int, val name: String, val description: String, val price: Double, val category_reference: Int)
+data class Product(val id: Int, val name: String, val description: String, val price: Double, val categoryReference: Int)
 
 @Serializable
-data class ReceiveProduct(val name: String, val description: String, val price: Double, val category_reference: Int)
+data class ReceiveProduct(val name: String, val description: String, val price: Double, val categoryReference: Int)
 
 object Products : Table() {
     val id = integer("id").autoIncrement().uniqueIndex()

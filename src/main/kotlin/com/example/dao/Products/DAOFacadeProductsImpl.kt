@@ -13,16 +13,16 @@ class DAOFacadeProductsImpl : DAOFacadeProducts {
         name = row[Products.name],
         description = row[Products.description],
         price = row[Products.price],
-        category_reference = row[Products.category_reference]
+        categoryReference = row[Products.category_reference]
     )
 
     override suspend fun getProducts(): List<Product> = dbQuery {
         Products.selectAll().map(::resultRowToProduct)
     }
 
-    override suspend fun getProductsByCategory(category_reference: Int): List<Product> = dbQuery {
+    override suspend fun getProductsByCategory(categoryReference: Int): List<Product> = dbQuery {
         Products
-            .select{Products.category_reference eq category_reference}
+            .select{Products.category_reference eq categoryReference}
             .map(::resultRowToProduct)
     }
 
@@ -37,13 +37,13 @@ class DAOFacadeProductsImpl : DAOFacadeProducts {
         name: String,
         description: String,
         price: Double,
-        category_reference: Int
+        categoryReference: Int
     ): Product? = dbQuery {
         val insertStatement = Products.insert {
             it[Products.name] = name
             it[Products.description] = description
             it[Products.price] = price
-            it[Products.category_reference] = category_reference
+            it[category_reference] = categoryReference
         }
         insertStatement.resultedValues?.singleOrNull()?.let(::resultRowToProduct)
     }
@@ -53,13 +53,13 @@ class DAOFacadeProductsImpl : DAOFacadeProducts {
         name: String,
         description: String,
         price: Double,
-        category_reference: Int
+        categoryReference: Int
     ): Boolean = dbQuery{
         Products.update({ Products.id eq id }) {
             it[Products.name] = name
             it[Products.description] = description
             it[Products.price] = price
-            it[Products.category_reference] = category_reference
+            it[category_reference] = categoryReference
         } > 0
     }
 

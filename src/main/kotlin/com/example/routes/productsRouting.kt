@@ -32,7 +32,7 @@ fun Route.productsRouting() {
                 receiveProduct.name,
                 receiveProduct.description,
                 receiveProduct.price,
-                receiveProduct.category_reference
+                receiveProduct.categoryReference
             ) ?: return@post call.respondText("Product not added", status = HttpStatusCode.BadRequest)
 
             call.respondText(
@@ -59,7 +59,7 @@ fun Route.productsRouting() {
                     receiveProduct.name,
                     receiveProduct.description,
                     receiveProduct.price,
-                    receiveProduct.category_reference
+                    receiveProduct.categoryReference
                 )
                 if (success) {
                     call.respondText(

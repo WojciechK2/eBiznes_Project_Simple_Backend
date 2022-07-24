@@ -1,7 +1,6 @@
 package com.example.dao.Categories
 
 import com.example.models.Category
-import com.example.models.Product
 
 interface DAOFacadeCategories {
 
